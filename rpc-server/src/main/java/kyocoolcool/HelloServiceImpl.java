@@ -1,5 +1,7 @@
 package kyocoolcool;
 
+import kyocoolcool.level7.Service;
+
 /**
  * @ClassName HelloServiceImpl
  * @Description
@@ -7,7 +9,6 @@ package kyocoolcool;
  * @Date 2019/12/2 2:15 PM
  * @Version 1.0
  **/
-
 public class HelloServiceImpl implements HelloService {
     @Override
     public String sayHello(String content) {

@@ -10,7 +10,7 @@ import kyocoolcool.TeacherService;
  * @description
  * @date 2020/3/19 2:14 PM
  **/
-@Service
+@Service("789")
 public class TeacherServiceImpl implements TeacherService {
     @Override
     public Teacher findTeacherById(Integer id) {

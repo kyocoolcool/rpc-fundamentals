@@ -8,7 +8,7 @@ import kyocoolcool.User;
  * @version 1.0
  * @since 2020/12/16 8:30 PM
  **/
-@Service
+@Service({"123","456"})
 public class HelloServiceImpl implements HelloService {
     @Override
     public String sayHello(String content) {
