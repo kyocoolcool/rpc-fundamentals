@@ -1,11 +1,10 @@
-package kyocoolcool.level4;
+package kyocoolcool.level7;
 
-import kyocoolcool.Teacher;
-import kyocoolcool.TeacherService;
+import kyocoolcool.HelloService;
 
 import java.io.*;
+import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
-import java.lang.reflect.Type;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -27,7 +26,7 @@ public class Server {
             final Socket s = ss.accept();//阻塞等待被調用
             process(s);
             s.close();
-            System.out.println("被呼叫次數:"+(++i)+" 次");
+            System.out.println("被呼叫次數:" + (++i) + " 次");
         }
         ss.close();
     }
@@ -37,14 +36,17 @@ public class Server {
         final OutputStream out = s.getOutputStream();
         final ObjectInputStream ois = new ObjectInputStream(in);
         final DataOutputStream dos = new DataOutputStream(out);
+        final String clazzName = ois.readUTF();
         final String methodName = ois.readUTF();
-        final Class[] parameterTypes = (Class[])ois.readObject();
+        final Class[] parameterTypes = (Class[]) ois.readObject();
         final Object[] args = (Object[]) ois.readObject();
-        final TeacherService service = new TeacherServiceImpl();
-        final Method method = service.getClass().getMethod(methodName, parameterTypes);
-        Teacher teacher = (Teacher) method.invoke(service, args);
-        dos.writeInt(teacher.getId());
-        dos.writeUTF(teacher.getName());
+        Class clazz=null;
+        //從服務註冊表找到具體的類
+        clazz = HelloServiceImpl.class;
+        final Method method = clazz.getMethod(methodName, parameterTypes);
+        final Object ob = method.invoke(clazz.newInstance(), args);
+        final ObjectOutputStream oos = new ObjectOutputStream(dos);
+        oos.writeObject(ob);
         dos.flush();
         ois.close();
         dos.close();

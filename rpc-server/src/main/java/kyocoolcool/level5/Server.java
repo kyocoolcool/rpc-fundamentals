@@ -1,11 +1,10 @@
-package kyocoolcool.level4;
+package kyocoolcool.level5;
 
 import kyocoolcool.Teacher;
 import kyocoolcool.TeacherService;
 
 import java.io.*;
 import java.lang.reflect.Method;
-import java.lang.reflect.Type;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -43,8 +42,8 @@ public class Server {
         final TeacherService service = new TeacherServiceImpl();
         final Method method = service.getClass().getMethod(methodName, parameterTypes);
         Teacher teacher = (Teacher) method.invoke(service, args);
-        dos.writeInt(teacher.getId());
-        dos.writeUTF(teacher.getName());
+        final ObjectOutputStream oos = new ObjectOutputStream(dos);
+        oos.writeObject(teacher);
         dos.flush();
         ois.close();
         dos.close();

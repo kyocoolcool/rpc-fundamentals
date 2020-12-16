@@ -1,5 +1,7 @@
 package kyocoolcool;
 
+import java.io.Serializable;
+
 /**
  * @author Chris Chen
  * @version 1.0
@@ -8,7 +10,8 @@ package kyocoolcool;
  * @date 2020/3/19 2:07 PM
  **/
 
-public class Teacher {
+public class Teacher implements Serializable {
+    private static final long serialVersionUID = -1474495976192177649L;
     private Integer id;
     private String name;
 
