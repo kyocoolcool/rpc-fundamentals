@@ -32,7 +32,6 @@ public class Client {
         final Teacher teacher = new Teacher(id, name);
 
         System.out.println(teacher);
-
         dos.close();
         s.close();
 
