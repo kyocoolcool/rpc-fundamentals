@@ -7,3 +7,4 @@ level6:加入調用類型增加接口方法。
 level7:擴展接口調用更彈性，優化實作服務註解發現。
 level8:序列化和反序列化
 java.io.serializable只支持Java語言
+level9,10:Hessian 序列化效率優化
